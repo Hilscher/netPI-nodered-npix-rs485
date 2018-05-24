@@ -8,8 +8,10 @@ Modifications:
 * setting serial port device to value /dev/ttyS0 as default
 * changed node color to value "#0087C9" 
 * renamed nodes to "serial ... npix rs485" to distinguish from standard
-* place nodes in category "netpi"
+* place nodes in category "npix"
 * no baudrate selection of value 300 and 600 any more
+* databits 8,7 only
+* parity none only
 -->
 
 <script type="text/x-red" data-template-name="serial in npix rs485">
@@ -126,20 +128,20 @@ Modifications:
         <select type="text" id="node-config-input-databits" style="width:70px;">
             <option value="8">8</option>
             <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
+<!--            <option value="6">6</option> -->
+<!--            <option value="5">5</option> -->
         </select>
         </td><td>
         <select type="text" id="node-config-input-parity" style="width:80px;">
             <option value="none" data-i18n="serial.parity.none"></option>
-            <option value="even" data-i18n="serial.parity.even"></option>
-            <option value="mark" data-i18n="serial.parity.mark"></option>
-            <option value="odd" data-i18n="serial.parity.odd"></option>
-            <option value="space" data-i18n="serial.parity.space"></option>
+<!--            <option value="even" data-i18n="serial.parity.even"></option> -->
+<!--            <option value="mark" data-i18n="serial.parity.mark"></option> -->
+<!--            <option value="odd" data-i18n="serial.parity.odd"></option> -->
+<!--            <option value="space" data-i18n="serial.parity.space"></option> -->
         </select>
         </td><td>
         <select type="text" id="node-config-input-stopbits" style="width:70px;">
-            <option value="2">2</option>
+<!--            <option value="2">2</option> -->
             <option value="1">1</option>
         </select>
     </td>
