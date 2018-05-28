@@ -1,6 +1,6 @@
 {
     "name"          : "node-red-contrib-npix-rs485",
-    "version"       : "0.9.2",
+    "version"       : "0.9.3",
     "description"   : "Node-RED nodes to talk to NIOT-E-NPIX-RS485 module serial ports",
     "dependencies"  : {
         "serialport" : "^6.0.4",
