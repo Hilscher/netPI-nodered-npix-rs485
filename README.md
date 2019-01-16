@@ -1,10 +1,10 @@
 ## Node-RED + npix rs485 nodes
 
-Made for [netPI](https://www.netiot.com/netpi/), the Open Edge Connectivity Ecosystem
+Made for [netPI](https://www.netiot.com/netpi/), the Raspberry Pi 3B Architecture based industrial suited Open Edge Connectivity Ecosystem
 
-### Debian with Node-RED and rs485 nodes for netPI's NIOT-E-NPIX-RS485 extension module
+### Debian with Node-RED and rs485 nodes for netPI extension module NIOT-E-NPIX-RS485
 
-The image provided hereunder deploys a container with installed Debian, Node-RED and rs485 nodes to communicate with an extension module NIOT-E-NPIX-RS485.
+The image provided hereunder deploys a container with installed Debian, Node-RED and rs485 nodes to communicate with netPI extension modules NIOT-E-NPIX-RS485.
 
 Base of this image builds the latest version of [debian:jessie](https://hub.docker.com/r/resin/armv7hf-debian/tags/) with installed Internet of Things flow-based programming web-tool [Node-RED](https://nodered.org/) and two extra nodes *serial rs485 (in/out)* providing access to the RS485 serial port of the module NIOT-E-NPIX-RS485. The nodes communicate to the module across a serial connection over device `/dev/ttyS0` using the CPU's so-called "mini UART" mentioned in the [BCM2835 ARM Peripherals manual](https://www.raspberrypi.org/app/uploads/2012/02/BCM2835-ARM-Peripherals.pdf). This UART has some restrictions supporting for example 8,7 Databits only or does not support partity handling.
 
@@ -48,24 +48,23 @@ STEP 3. Enter the following parameters under **Containers > Add Container**
 
 * **Runtime > Privileged mode** : `On`
 
-STEP 4. Press the button **Actions > Start container**
+STEP 4. Press the button **Actions > Start/Deploy container**
 
-Pulling the image from Docker Hub may take up to 5 minutes.
+Pulling the image may take a while (5-10mins). Sometimes it takes so long that a time out is indicated. In this case repeat the **Actions > Start/Deploy container** action.
 
 #### Accessing
 
 After starting the container open Node-RED in your browser with `http://<netpi's ip address>:<mapped host port>` e.g. `http://192.168.0.1:1880`. Two nodes *serial rs485 (in/out)* in the nodes *npix* library palette provides you access to the RS485 interface of the NPIX module. The nodes' info tab in Node-RED explains how to use them.
 
-#### Tags
+#### Automated build
 
-* **hilscher/netPI-nodered-npix-rs485:latest** - non-versioned latest development output of the master branch. Can run on any netPI system software version.
+The project complies with the scripting based [Dockerfile](https://docs.docker.com/engine/reference/builder/) method to build the image output file. Using this method is a precondition for an [automated](https://docs.docker.com/docker-hub/builds/) web based build process on DockerHub platform.
 
-#### GitHub sources
-The image is built from the GitHub project [netPI-nodered-npix-rs485](https://github.com/Hilscher/netPI-nodered-npix-rs485). It complies with the [Dockerfile](https://docs.docker.com/engine/reference/builder/) method to build a Docker image [automated](https://docs.docker.com/docker-hub/builds/).
+DockerHub web platform is x86 CPU based, but an ARM CPU coded output file is needed for Raspberry systems. This is why the Dockerfile includes the [balena.io](https://balena.io/blog/building-arm-containers-on-any-x86-machine-even-dockerhub/) steps.
 
-View the license information for the software in the Github project. As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+#### License
+
+View the license information for the software in the project. As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
-
-To build the container for an ARM CPU on [Docker Hub](https://hub.docker.com/)(x86 based) the Dockerfile uses the method described here [resin.io](https://resin.io/blog/building-arm-containers-on-any-x86-machine-even-dockerhub/).
 
 [![N|Solid](http://www.hilscher.com/fileadmin/templates/doctima_2013/resources/Images/logo_hilscher.png)](http://www.hilscher.com)  Hilscher Gesellschaft fuer Systemautomation mbH  www.hilscher.com
