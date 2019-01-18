@@ -6,7 +6,7 @@ Made for [netPI](https://www.netiot.com/netpi/), the Raspberry Pi 3B Architectur
 
 The image provided hereunder deploys a container with installed Debian, Node-RED and rs485 nodes to communicate with netPI extension modules NIOT-E-NPIX-RS485.
 
-Base of this image builds the latest version of [debian:jessie](https://hub.docker.com/r/resin/armv7hf-debian/tags/) with installed Internet of Things flow-based programming web-tool [Node-RED](https://nodered.org/) and two extra nodes *serial rs485 (in/out)* providing access to the RS485 serial port of the module NIOT-E-NPIX-RS485. The nodes communicate to the module across a serial connection over device `/dev/ttyS0` using the CPU's so-called "mini UART" mentioned in the [BCM2835 ARM Peripherals manual](https://www.raspberrypi.org/app/uploads/2012/02/BCM2835-ARM-Peripherals.pdf). This UART has some restrictions supporting for example 8,7 Databits only or does not support partity handling.
+Base of this image builds [debian](https://www.balena.io/docs/reference/base-images/base-images/) with installed Internet of Things flow-based programming web-tool [Node-RED](https://nodered.org/) and two extra nodes *serial rs485 (in/out)* providing access to the RS485 serial port of the module NIOT-E-NPIX-RS485. The nodes communicate to the module across a serial connection over device `/dev/ttyS0` using the CPU's so-called "mini UART" mentioned in the [BCM2835 ARM Peripherals manual](https://www.raspberrypi.org/app/uploads/2012/02/BCM2835-ARM-Peripherals.pdf). This UART has some restrictions supporting for example 8,7 Databits only or does not support partity handling.
 
 ATTENTION! Never plug or unplug any extension module if netPI is powered. Make sure a module is already inserted before applying 24VDC to netPI. 
 
@@ -18,7 +18,7 @@ The software includes modified third party software from the Github repository [
 
 ##### Port mapping
 
-To allow the access to the Node-RED programming tool over a web browser the container TCP port `1880` needs to be exposed to the host.
+To allow the access to Node-RED over a web browser the container TCP port `1880` needs to be exposed to the host.
 
 ##### Privileged mode
 
@@ -60,7 +60,7 @@ After starting the container open Node-RED in your browser with `http://<netpi's
 
 The project complies with the scripting based [Dockerfile](https://docs.docker.com/engine/reference/builder/) method to build the image output file. Using this method is a precondition for an [automated](https://docs.docker.com/docker-hub/builds/) web based build process on DockerHub platform.
 
-DockerHub web platform is x86 CPU based, but an ARM CPU coded output file is needed for Raspberry systems. This is why the Dockerfile includes the [balena.io](https://balena.io/blog/building-arm-containers-on-any-x86-machine-even-dockerhub/) steps.
+DockerHub web platform is x86 CPU based, but an ARM CPU coded output file is needed for Raspberry systems. This is why the Dockerfile includes the [balena](https://balena.io/blog/building-arm-containers-on-any-x86-machine-even-dockerhub/) steps.
 
 #### License
 
