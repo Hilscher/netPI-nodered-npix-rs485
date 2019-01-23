@@ -1,16 +1,16 @@
-#use latest armv7hf compatible debian OS version from group resin.io as base image
-FROM balenalib/armv7hf-debian:jessie
+#use armv7hf compatible OS
+FROM balenalib/armv7hf-debian:stretch
 
 #enable building ARM container on x86 machinery on the web (comment out next line if built on Raspberry) 
 RUN [ "cross-build-start" ]
 
 #labeling
 LABEL maintainer="netpi@hilscher.com" \ 
-      version="V0.9.3" \
+      version="V0.9.4" \
       description="Node-RED with rs485 nodes to communicate to NIOT-E-NPIX-RS485 extension module"
 
 #version
-ENV HILSCHERNETPI_NODERED_NPIX_RS485_VERSION 0.9.3
+ENV HILSCHERNETPI_NODERED_NPIX_RS485_VERSION 0.9.4
 
 #copy files
 COPY "./init.d/*" /etc/init.d/ 
@@ -18,9 +18,9 @@ COPY "./node-red-contrib-npix-rs485/*" "./node-red-contrib-npix-rs485/locales/en
 
 #do installation
 RUN apt-get update  \
-    && apt-get install curl build-essential \
+    && apt-get install curl build-essential python-dev \
 #install node.js
-    && curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -  \
+    && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -  \
     && apt-get install -y nodejs  \
 #install Node-RED
     && npm install -g --unsafe-perm node-red \
