@@ -1,25 +1,26 @@
 {
     "name"          : "node-red-contrib-npix-rs485",
-    "version"       : "0.9.3",
-    "description"   : "Node-RED nodes to talk to NIOT-E-NPIX-RS485 module serial ports",
+    "version"       : "1.0.0",
+    "description"   : "Node-RED nodes to talk to NIOT-E-NPIX-RS485 module serial port",
     "dependencies"  : {
-        "serialport" : "^6.0.4",
-        "rpi-gpio" : "~0.8.1",
+        "serialport"   : "^7.1.5",
+        "rpi-gpio": "~0.8.1",
         "locks" : "0.2.2"
     },
     "repository" : {
         "type":"git",
         "origin":"https://github.com/node-red/node-red-nodes/tree/master/io/serialport",
-        "url": "https://github.com/Hilscher/netpi-nodered-npix-rs485"
+        "url": "https://github.com/HilscherAutomation/netPI-nodered-npix-rs485"
     },
     "license": "Apache-2.0",
     "keywords": [ "node-red", "serial","rs485","hilscher","netpi" ],
     "node-red": {
-        "version": ">=0.16.0",
+        "version": ">=0.18.0",
         "nodes": {
-            "serialport": "25-serial.js"
+            "serialport": "25-serial-rs485.js"
         }
     },
+    "engines" : { "node" : ">=8" },
     "author": {
         "name": "Dave Conway-Jones",
         "email": "ceejay@vnet.ibm.com",

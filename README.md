@@ -1,6 +1,9 @@
-## Node-RED + npix rs485 nodes
+## NPIX-RS485 nodes
 
-Made for [netPI](https://www.netiot.com/netpi/), the Raspberry Pi 3B Architecture based industrial suited Open Edge Connectivity Ecosystem
+[![](https://images.microbadger.com/badges/image/hilschernetpi/netpi-nodered-npix-rs485.svg)](https://microbadger.com/images/hilschernetpi/netpi-nodered-npix-rs485 "NPIX-RS485")
+[![](https://images.microbadger.com/badges/commit/hilschernetpi/netpi-nodered-npix-rs485.svg)](https://microbadger.com/images/hilschernetpi//netpi-nodered-npix-rs485 "NPIX-RS485")
+[![Docker Registry](https://img.shields.io/docker/pulls/hilschernetpi/netpi-nodered-npix-rs485.svg)](https://registry.hub.docker.com/u/hilschernetpi/netpi-nodered-npix-rs485/)&nbsp;
+[![Image last updated](https://img.shields.io/badge/dynamic/json.svg?url=https://api.microbadger.com/v1/images/hilschernetpi/netpi-nodered-npix-rs485&label=Image%20last%20updated&query=$.LastUpdated&colorB=007ec6)](http://microbadger.com/images/hilschernetpi/netpi-nodered-npix-rs485 "Image last updated")&nbsp;
 
 ### Debian with Node-RED and rs485 nodes for netPI extension module NIOT-E-NPIX-RS485
 
@@ -32,25 +35,23 @@ The serial port device `/dev/ttyS0` needs to be added to the container. The devi
 
 #### Getting started
 
-STEP 1. Open netPI's landing page under `https://<netpi's ip address>`.
+STEP 1. Open netPI's website in your browser (https).
 
 STEP 2. Click the Docker tile to open the [Portainer.io](http://portainer.io/) Docker management user interface.
 
-STEP 3. Enter the following parameters under **Containers > Add Container**
+STEP 3. Enter the following parameters under *Containers > + Add Container*
 
-* **Image**: `hilschernetpi/netpi-nodered-npix-rs485`
+Parameter | Value | Remark
+:---------|:------ |:------
+*Image* | **hilschernetpi/netpi-nodered-npix-rs485** |
+*Port mapping* | *host* **1880** -> *container* **1880** | *host*=any unused
+*Restart policy* | **always**
+*Runtime > Devices > +add device* | *Host path* **/dev/ttyS0** -> *Container path* **/dev/ttyS0** |
+*Runtime > Privileged mode* | **On** |
 
-* **Port mapping**: `Host "1880" (any unused one) -> Container "1880"` 
+STEP 4. Press the button *Actions > Start/Deploy container*
 
-* **Restart policy"** : `always`
-
-* **Runtime > Devices > add device**: `Host "/dev/ttyS0" -> Container "/dev/ttyS0"`
-
-* **Runtime > Privileged mode** : `On`
-
-STEP 4. Press the button **Actions > Start/Deploy container**
-
-Pulling the image may take a while (5-10mins). Sometimes it takes so long that a time out is indicated. In this case repeat the **Actions > Start/Deploy container** action.
+Pulling the image may take a while (5-10mins). Sometimes it may take too long and a time out is indicated. In this case repeat STEP 4.
 
 #### Accessing
 
