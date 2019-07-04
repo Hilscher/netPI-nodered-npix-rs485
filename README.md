@@ -9,7 +9,7 @@
 
 The image provided hereunder deploys a container with installed Debian, Node-RED and rs485 nodes to communicate with netPI extension modules NIOT-E-NPIX-RS485.
 
-Base of this image builds [debian](https://www.balena.io/docs/reference/base-images/base-images/) with installed Internet of Things flow-based programming web-tool [Node-RED](https://nodered.org/) and two extra nodes *serial rs485 (in/out)* providing access to the RS485 serial port of the module NIOT-E-NPIX-RS485. The nodes communicate to the module across a serial connection over device `/dev/ttyS0` using the CPU's so-called "mini UART" mentioned in the [BCM2835 ARM Peripherals manual](https://www.raspberrypi.org/app/uploads/2012/02/BCM2835-ARM-Peripherals.pdf). This UART has some restrictions supporting for example 8,7 Databits only or does not support partity handling and hence is not a 16650 compatible UART.
+Base of this image builds [debian](https://www.balena.io/docs/reference/base-images/base-images/) with installed Internet of Things flow-based programming web-tool [Node-RED](https://nodered.org/) and three extra nodes *serial rs485 (in,out,in/out)* providing access to the RS485 serial port of the module NIOT-E-NPIX-RS485. The nodes communicate to the module across a serial connection over device `/dev/ttyS0` using the CPU's so-called "mini UART" mentioned in the [BCM2835 ARM Peripherals manual](https://www.raspberrypi.org/app/uploads/2012/02/BCM2835-ARM-Peripherals.pdf). This UART has some restrictions supporting for example 8,7 Databits only or does not support partity handling and hence is not a 16650 compatible UART.
 
 ATTENTION! Never plug or unplug any extension module if netPI is powered. Make sure a module is already inserted before applying 24VDC to netPI. 
 
@@ -55,7 +55,7 @@ Pulling the image may take a while (5-10mins). Sometimes it may take too long an
 
 #### Accessing
 
-After starting the container open Node-RED in your browser with `http://<netpi's ip address>:<mapped host port>` e.g. `http://192.168.0.1:1880`. Two nodes *serial rs485 (in/out)* in the nodes *npix* library palette provides you access to the RS485 interface of the NPIX module. The nodes' info tab in Node-RED explains how to use them.
+After starting the container open Node-RED in your browser with `http://<netpi's ip address>:<mapped host port>` e.g. `http://192.168.0.1:1880`. Three nodes *serial rs485 (in,out,in/out)* in the nodes *npix* library palette provides you access to the RS485 interface of the NPIX module. The nodes' info tab in Node-RED explains how to use them.
 
 #### Automated build
 

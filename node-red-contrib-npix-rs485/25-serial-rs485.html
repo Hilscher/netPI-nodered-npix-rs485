@@ -15,7 +15,7 @@ Modifications:
 * 1 stopbit only
 -->
 
-<script type="text/x-red" data-template-name="serial in">
+<script type="text/x-red" data-template-name="npixrs485serial in">
     <div class="form-row node-input-serial">
         <label for="node-input-serial"><i class="fa fa-random"></i> <span data-i18n="serial.label.serialport"></span></label>
         <input type="text" id="node-input-serial">
@@ -26,7 +26,7 @@ Modifications:
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="serial in">
+<script type="text/x-red" data-help-name="npixrs485serial in">
     <p>Reads data from a local serial port.</p>
     <p>Can either <ul><li>wait for a "split" character (default \n). Also accepts hex notation (0x0d).</li>
     <li>Wait for a timeout in milliseconds from the first character received</li>
@@ -38,11 +38,11 @@ Modifications:
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('serial in',{
+    RED.nodes.registerType('npixrs485serial in',{
         category: 'npix',
         defaults: {
             name: {name:""},
-            serial: {type:"serial-port npix rs485",required:true}
+            serial: {type:"npixrs485serial-port",required:true}
         },
         color:"#0087C9",
         inputs:0,
@@ -59,7 +59,7 @@ Modifications:
     });
 </script>
 
-<script type="text/x-red" data-template-name="serial out">
+<script type="text/x-red" data-template-name="npixrs485serial out">
     <div class="form-row node-input-serial">
         <label for="node-input-serial"><i class="fa fa-random"></i> <span data-i18n="serial.label.serialport"></span></label>
         <input type="text" id="node-input-serial">
@@ -70,7 +70,7 @@ Modifications:
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="serial out">
+<script type="text/x-red" data-help-name="npixrs485serial out">
     <p>Provides a connection to an outbound serial port.</p>
     <p>Only the <code>msg.payload</code> is sent.</p>
     <p>Optionally the new line character used to split the input can be appended to every message sent out to the serial port.</p>
@@ -86,11 +86,11 @@ Modifications:
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('serial out',{
+    RED.nodes.registerType('npixrs485serial out',{
         category: 'npix',
         defaults: {
             name: {name:""},
-            serial: {type:"serial-port npix rs485",required:true}
+            serial: {type:"npixrs485serial-port",required:true}
         },
         color:"#0087C9",
         inputs:1,
@@ -108,7 +108,7 @@ Modifications:
     });
 </script>
 
-<script type="text/x-red" data-template-name="serial request npix rs485">
+<script type="text/x-red" data-template-name="npixrs485serial request">
     <div class="form-row node-input-serial">
         <label for="node-input-serial"><i class="fa fa-random"></i> <span data-i18n="serial.label.serialport"></span></label>
         <input type="text" id="node-input-serial">
@@ -119,7 +119,7 @@ Modifications:
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="serial request npix rs485">
+<script type="text/x-red" data-help-name="npixrs485serial request">
     <p>Provides a connection to a request/response serial port.</p>
     <p>This node behaves as a tightly coupled combination of <code>serial in</code> and <code>serial out</code> nodes,
     with which it shares the configuration.</p>
@@ -146,11 +146,11 @@ Modifications:
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('serial request npix rs485',{
-        category: 'function',
+    RED.nodes.registerType('npixrs485serial request',{
+        category: 'npix',
         defaults: {
             name: {name:""},
-            serial: {type:"serial-port npix rs485",required:true}
+            serial: {type:"npixrs485serial-port",required:true}
         },
         color:"#0087C9",
         inputs:1,
@@ -168,7 +168,7 @@ Modifications:
     });
 </script>
 
-<script type="text/x-red" data-template-name="serial-port npix rs485">
+<script type="text/x-red" data-template-name="npixrs485serial-port">
     <div class="form-row">
         <label for="node-config-input-serialport"><i class="fa fa-random"></i> <span data-i18n="serial.label.serialport"></span></label>
         <input type="text" id="node-config-input-serialport" style="width:66%;" data-i18n="[placeholder]serial.placeholder.serialport">
@@ -260,7 +260,7 @@ Modifications:
     <div class="form-tips" id="tip-count" hidden><span data-i18n="serial.tip.count"></span></div>
 </script>
 
-<script type="text/x-red" data-help-name="serial-port npix rs485">
+<script type="text/x-red" data-help-name="npixrs485serial-port">
     <p>Provides configuration options for a serial port.</p>
     <p>The search button should return a list of available serial ports to choose from, or you
     can type in the location if known.</p>
@@ -270,7 +270,7 @@ Modifications:
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('serial-port npix rs485',{
+    RED.nodes.registerType('npixrs485serial-port',{
         category: 'config',
         defaults: {
             //name: {value:""},

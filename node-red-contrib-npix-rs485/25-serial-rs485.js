@@ -44,7 +44,7 @@ module.exports = function(RED) {
         this.waitfor = n.waitfor || "";
         this.responsetimeout = n.responsetimeout || 10000;
     }
-    RED.nodes.registerType("serial-port npix rs485",SerialPortNode);
+    RED.nodes.registerType("npixrs485serial-port",SerialPortNode);
 
 
     // receives msgs and sends them to the serial port
@@ -110,7 +110,7 @@ module.exports = function(RED) {
             }
         });
     }
-    RED.nodes.registerType("serial out",SerialOutNode);
+    RED.nodes.registerType("npixrs485serial out",SerialOutNode);
 
 
     // receives data from the serial port and emits msgs
@@ -147,7 +147,7 @@ module.exports = function(RED) {
             }
         });
     }
-    RED.nodes.registerType("serial in",SerialInNode);
+    RED.nodes.registerType("npixrs485serial in",SerialInNode);
 
 
     /******* REQUEST *********/
@@ -211,7 +211,7 @@ module.exports = function(RED) {
             }
         });
     }
-    RED.nodes.registerType("serial request npix rs485", SerialRequestNode);
+    RED.nodes.registerType("npixrs485serial request", SerialRequestNode);
 
     var serialPool = (function() {
         var connections = {};
