@@ -74,13 +74,14 @@ module.exports = function(RED) {
                                      if (err) {
                                          var errmsg = err.toString().replace("Serialport","Serialport "+node.port.serial.path);
                                          node.error(errmsg,msg);
+                                         mutex.unlock();
                                      } else {
                                          // !!!!!Modification!!!! Wait till all data has been transmitted
                                          node.port.drain(function(err) {
                                               // set RS485 TX enable to low
                                               gpio.write(11, false, function(err){
-                                                   // unlock mutex  
-                                                   mutex.unlock();             
+                                                   // unlock mutex
+                                                   mutex.unlock();
                                               });
                                          });
                                      }
@@ -268,6 +269,7 @@ module.exports = function(RED) {
                         queue: [],
                         on: function(a,b) { this._emitter.on(a,b); },
                         close: function(cb) { this.serial.close(cb); },
+                        drain: function(cb) { this.serial.drain(cb); },
                         encodePayload: function (payload) {
                             if (!Buffer.isBuffer(payload)) {
                                 if (typeof payload === "object") {
