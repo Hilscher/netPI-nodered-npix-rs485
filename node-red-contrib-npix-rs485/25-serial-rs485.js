@@ -160,20 +160,42 @@ module.exports = function(RED) {
         if (this.serialConfig) {
             var node = this;
             node.port = serialPool.get(this.serialConfig);
-            // Serial Out
-            node.on("input",function(msg) {
-                if (!msg.hasOwnProperty("payload")) { return; } // do nothing unless we have a payload
-                if (msg.hasOwnProperty("count") && (typeof msg.count === "number") && (node.serialConfig.out === "count")) {
-                    node.serialConfig.newline = msg.count;
+            // take control of GPIO 17 
+            gpio.setup(11, gpio.DIR_LOW, function (err) {
+                if (err) {
+                    RED.log.warn(" Setting GPIO 17 to output failed");
+                } else {
+                    // Serial Out
+                    node.on("input",function(msg) {
+                        if (!msg.hasOwnProperty("payload")) { return; } // do nothing unless we have a payload
+                        if (msg.hasOwnProperty("count") && (typeof msg.count === "number") && (node.serialConfig.out === "count")) {
+                            node.serialConfig.newline = msg.count;
+                        }
+                        if (msg.hasOwnProperty("flush") && msg.flush === true) { node.port.serial.flush(); }
+                        node.status({fill:"yellow",shape:"dot",text:"serial.status.waiting"});
+                        // !!!!Modification !!!!! get Mutex, set RS485 TX enable to high first, then send
+                        mutex.lock(function () {
+                            gpio.write(11, true, function(err) {
+                                node.port.enqueue(msg,node,function(err,res) {
+                                    if (err) {
+                                        var errmsg = err.toString().replace("Serialport","Serialport "+node.port.serial.path);
+                                        node.error(errmsg,msg);
+                                        mutex.unlock();
+                                    } else {
+                                         // !!!!!Modification!!!! Wait till all data has been transmitted
+                                         node.port.drain(function(err) {
+                                              // set RS485 TX enable to low
+                                              gpio.write(11, false, function(err){
+                                                   // unlock mutex
+                                                   mutex.unlock();
+                                              });
+                                         });
+                                    }
+                                });
+                            });
+                        });
+                    });
                 }
-                if (msg.hasOwnProperty("flush") && msg.flush === true) { node.port.serial.flush(); }
-                node.status({fill:"yellow",shape:"dot",text:"serial.status.waiting"});
-                node.port.enqueue(msg,node,function(err,res) {
-                    if (err) {
-                        var errmsg = err.toString().replace("Serialport","Serialport "+node.port.serial.path);
-                        node.error(errmsg,msg);
-                    }
-                });
             });
 
             // Serial In
@@ -489,4 +511,5 @@ module.exports = function(RED) {
         });
     });
 }
+
 
